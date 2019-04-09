@@ -19,8 +19,8 @@ public class ClienteDao {
 private Connection connection;
 
         public ClienteDao() {
-            this.connection = new ConnectionFactory().getConnection();
-            JOptionPane.showMessageDialog(null, "CONECTOU");
+            this.connection = new ConnectionFactory().geConnection();
+        
         }
    
 
@@ -35,6 +35,8 @@ private Connection connection;
             st.setString(4, cliente.getEndereco());
             st.execute();
             st.close();
+            
+            JOptionPane.showMessageDialog(null,"Cadastrado com sucesso!");
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

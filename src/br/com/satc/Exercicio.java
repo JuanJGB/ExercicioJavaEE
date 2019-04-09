@@ -25,14 +25,13 @@ public class Exercicio {
         System.out.println("Conectou!");
         ClienteDao clienteDao = new ClienteDao();
 
-        String nome, rg, cpf, endereco;
+        String nome, rg, cpf;
 
         nome = JOptionPane.showInputDialog(null, " Informe o nome: ");
         rg = JOptionPane.showInputDialog(null, " Informe o rg: ");
         cpf = JOptionPane.showInputDialog(null, " Informe o cpf: ");
-        endereco = JOptionPane.showInputDialog(null, " Informe o endereço: ");
 
-        Cliente cliente = new Cliente(nome, rg, cpf, endereco);
+        Cliente cliente = new Cliente(nome, rg, cpf);
 
         clienteDao.cadastrar(cliente);
         con.close();

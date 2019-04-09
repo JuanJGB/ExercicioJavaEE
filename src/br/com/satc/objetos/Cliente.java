@@ -10,7 +10,7 @@ package br.com.satc.objetos;
  * @author juan.159417
  */
 public class Cliente {
-    private String nome,rg,cpf,endereco;
+    private String nome,rg,cpf;
 
     public String getNome() {
         return nome;
@@ -36,21 +36,10 @@ public class Cliente {
         this.cpf = cpf;
     }
 
-    public Cliente(String nome, String rg, String cpf, String endereco) {
+    public Cliente(String nome, String rg, String cpf) {
         this.nome = nome;
         this.rg = rg;
         this.cpf = cpf;
-        this.endereco = endereco;
     }
 
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-    
-
-    
 }

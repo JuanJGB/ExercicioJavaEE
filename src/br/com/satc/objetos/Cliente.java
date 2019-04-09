@@ -6,11 +6,26 @@
 package br.com.satc.objetos;
 
 /**
- *
  * @author juan.159417
  */
 public class Cliente {
-    private String nome,rg,cpf,endereco;
+    private int id;
+    private String nome;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Cliente(int id) {
+        this.id = id;
+    }
+
+    private String rg;
+    private String cpf;
 
     public String getNome() {
         return nome;
@@ -36,21 +51,12 @@ public class Cliente {
         this.cpf = cpf;
     }
 
-    public Cliente(String nome, String rg, String cpf, String endereco) {
+    public Cliente(int id, String nome, String rg, String cpf) {
         this.nome = nome;
         this.rg = rg;
         this.cpf = cpf;
-        this.endereco = endereco;
+
     }
 
-    public String getEndereco() {
-        return endereco;
-    }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-    
-
-    
 }

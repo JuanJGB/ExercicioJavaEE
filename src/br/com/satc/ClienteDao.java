@@ -25,7 +25,6 @@ private Connection connection;
    
 
     public void cadastrar(Cliente cliente) throws SQLException {
-
         try (
                 PreparedStatement st = connection.prepareStatement("INSERT INTO pizzaria.cliente (nome, rg, cpf, endereco) VALUES (?,?,?,?)")) {
 
@@ -43,5 +42,7 @@ private Connection connection;
         }
       
     }
+
+
 
 }

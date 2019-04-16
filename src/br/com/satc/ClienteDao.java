@@ -19,12 +19,8 @@ import javax.swing.JOptionPane;
  * @author juan.159417
  */
 public class ClienteDao {
-    private Connection connection;
+    private Connection connection =  new ConnectionFactory().geConnection();
 
-    public ClienteDao() {
-        this.connection = new ConnectionFactory().geConnection();
-
-    }
 
 
     public void cadastrar(Cliente cliente) throws SQLException {
@@ -45,23 +41,23 @@ public class ClienteDao {
 
     }
 
-    public boolean updateCliente(Cliente cliente) throws SQLException {
+    public void updateCliente(Cliente cliente) throws SQLException {
 
-        PreparedStatement st = connection.prepareStatement("UPDATE INTO pizzaria.cliente  SEt nome = ?, rg = ?, cpf = ? where idcliente = idcliente) VALUES (?,?,?)");
-        {
-
+        try {
+            PreparedStatement st = connection.prepareStatement("UPDATE INTO pizzaria.cliente  SEt nome = ?, rg = ?, cpf = ? where idcliente = idcliente) VALUES (?,?,?)");
 
             st.setString(1, cliente.getNome());
             st.setString(2, cliente.getRg());
             st.setString(3, cliente.getCpf());
             st.execute();
             st.close();
-
-            boolean rowUpdated = st.executeUpdate() > 0;
-            st.close();
-            connection.close();
-            return rowUpdated;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
+
+
+        connection.close();
+
     }
 
     public Cliente getCliente(int id) throws SQLException {
@@ -78,7 +74,7 @@ public class ClienteDao {
         String rg = resultSet.getString("rg");
         String cpf = resultSet.getString("cpf");
 
-        Cliente cliente = new Cliente(id, nome, rg, cpf);
+        Cliente cliente = new Cliente(nome, rg, cpf);
         resultSet.close();
         st.close();
 
@@ -88,41 +84,37 @@ public class ClienteDao {
     public List<Cliente> listarCLientes() throws SQLException {
 
         List<Cliente> listaClientes = new ArrayList<>();
+        try {
+            PreparedStatement st = connection.prepareStatement("SELECT * FROM cliente");
 
-        PreparedStatement st = connection.prepareStatement("SELECT * FROM cliente");
+            st.execute();
+            ResultSet resultSet = st.executeQuery();
+            while (resultSet.next()) {
+                String nome = resultSet.getString("nome");
+                int id = resultSet.getInt("idcliente");
+                String rg = resultSet.getString("rg");
+                String cpf = resultSet.getString("cpf");
 
-        st.execute();
-        ResultSet resultSet = st.executeQuery();
+                Cliente cliente = new Cliente(nome, rg, cpf);
+                listaClientes.add(cliente);
+                st.close();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
-        String nome = resultSet.getString("nome");
-        int id = resultSet.getInt("idcliente");
-        String rg = resultSet.getString("rg");
-        String cpf = resultSet.getString("cpf");
-
-        Cliente cliente = new Cliente(id, nome, rg, cpf);
-        listaClientes.add(cliente);
-
-
-        resultSet.close();
-        st.close();
-
-        connection.close();
 
         return listaClientes;
     }
 
-    public boolean deletarCliente(Cliente cliente) throws SQLException {
+    public void deletarCliente(int id) throws SQLException {
 
-        PreparedStatement st = connection.prepareStatement("SELECT * FROM cliente");
+        PreparedStatement st = connection.prepareStatement("DELETE FROM cliente WHERE idcliente = " + id);
 
         st.execute();
-        ResultSet resultSet = st.executeQuery();
-
-
-        boolean rowDeleted = st.executeUpdate() > 0;
         st.close();
-        connection.close();
-        return rowDeleted;
+
+
     }
 
 

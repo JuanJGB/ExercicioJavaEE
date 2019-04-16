@@ -1,16 +1,16 @@
 package br.com.satc;
 
-import br.com.satc.objetos.Cliente;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
+
+import br.com.satc.objetos.Cliente;
 
 public class ClienteController extends HttpServlet {
     private ClienteDao clienteDao;
@@ -83,7 +83,7 @@ public class ClienteController extends HttpServlet {
         String rg = request.getParameter("rg");
         String cpf =request.getParameter("cpf");
 
-        Cliente cliente = new Cliente(id, nome,rg,cpf);
+        Cliente cliente = new Cliente(nome,rg,cpf);
         clienteDao.cadastrar(cliente);
         response.sendRedirect("list");
     }
@@ -96,7 +96,7 @@ public class ClienteController extends HttpServlet {
         String rg = request.getParameter("rg");
         String cpf =request.getParameter("cpf");
 
-        Cliente cliente = new Cliente(id,nome,rg,cpf);
+        Cliente cliente = new Cliente(nome,rg,cpf);
         clienteDao.updateCliente(cliente);
         response.sendRedirect("list");
     }
@@ -106,7 +106,7 @@ public class ClienteController extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
 
         Cliente cliente = new Cliente(id);
-        clienteDao.deletarCliente(cliente);
+        clienteDao.deletarCliente(id);
         response.sendRedirect("list");
 
     }

@@ -51,7 +51,7 @@ public class Cliente {
         this.cpf = cpf;
     }
 
-    public Cliente(int id, String nome, String rg, String cpf) {
+    public Cliente(String nome, String rg, String cpf) {
         this.nome = nome;
         this.rg = rg;
         this.cpf = cpf;

@@ -5,6 +5,9 @@
  */
 package br.com.satc;
 
+
+
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -15,10 +18,12 @@ import java.sql.SQLException;
  */
 public class ConnectionFactory {
     public Connection geConnection() {
-        try  {
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzaria", "root", "");
+        try {
+
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzaria",  "root", "");
         } catch (SQLException e) {
             throw new RuntimeException(e);
+
         }
     }
 }

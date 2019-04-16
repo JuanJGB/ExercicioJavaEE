@@ -20,14 +20,12 @@ public class Main {
      * @throws SQLException
      */
 //    private static final String USER = "root", PSW = "", CON = "jdbc:mysql://localhost:3306/teste";
-    public static void main(String[] args) throws SQLException {
-   
-        
-            Connection con = new ConnectionFactory().geConnection();
-            System.out.println("Conectou!");
-            
-             ClienteDao clienteDao = new ClienteDao();
-            String nome, rg, cpf, endereco;
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        Connection con = new ConnectionFactory().geConnection();
+
+        System.out.println("Conectou!");
+
+        ClienteDao clienteDao = new ClienteDao();
 
             
     }

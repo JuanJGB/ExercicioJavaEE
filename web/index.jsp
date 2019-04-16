@@ -1,4 +1,8 @@
-<%-- Created by IntelliJ IDEA. --%>
+<%@ page import="br.com.satc.ClienteDao" %>
+<%@ page import="br.com.satc.objetos.Cliente" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="br.com.satc.ConnectionFactory" %>
+<%@ page import="java.sql.SQLException" %><%-- Created by IntelliJ IDEA. --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
@@ -10,31 +14,33 @@
 <a href="cadastro.jsp">Cadastrar Cliente</a>
 
 <a href="index.jsp">Listar Clientes</a>
+<a  href="edicao.jsp">Editar</a>
 
-
-<div align="center">
-    <table border="1" cellpadding="5">
-        <caption><h2>Lista de Clientes</h2></caption>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>RG</th>
-            <th>CPF</th>
-
-        </tr>
-        <c:forEach var="book" items="${listBook}">
+    <div align="center">
+        <table border="1" cellpadding="5">
+            <caption><h2>Lista de Clientes</h2></caption>
             <tr>
-                <td><c:out value="${book.id}" /></td>
-                <td><c:out value="${book.title}" /></td>
-                <td><c:out value="${book.author}" /></td>
-                <td><c:out value="${book.price}" /></td>
-                <td>
-                    <a href="/editar?id=<c:out value='${book.id}' />">Edit</a>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="/deletar?id=<c:out value='${book.id}' />">Delete</a>
-                </td>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>RG</th>
+                <th>CPF</th>
+
             </tr>
-        </c:forEach>
+
+                <tr>
+                    <td><c:out value=""/></td>
+                    <td><c:out value=""/></td>
+                    <td><c:out value="<"/></td>
+                    <td><c:out value=""/></td>
+                    <td>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a >Delete</a>
+                    </td>
+                </tr>
+
+            <%
+       %>
     </table>
 </div>
 </body>
